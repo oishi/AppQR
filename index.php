@@ -27,8 +27,6 @@ if($ch = curl_init()) {
 	
 	$res = curl_exec($ch);
 	curl_close($ch);
-	
-//	echo $res;
 }
 
 $links = extractLink($res);
@@ -46,18 +44,6 @@ if(!is_null($links)) {
 			echo '<img src="'.$iosapp->artwork.'"/>';
 			echo '<img src='."\"http://chart.apis.google.com/chart?cht=qr&chs=175x175&chl=".urlencode($link)."\"".'/>';
 			echo '<br />';
-
-
-		
-			/*
-			$appstore = new AppStore($id);
-		
-			echo '<h1>'.$appstore->appname.'</h1>';
-			echo '<img src="'.$appstore->artwork.'"/>';
-			echo '<img src='."\"http://chart.apis.google.com/chart?cht=qr&chs=175x175&chl=".urlencode($link)."\"".'/>';
-			echo '<br />';
-			*/
-
 		}
 	}
 }
@@ -109,7 +95,6 @@ class iOSApp {
 	public function initByUrl($url) {
 		$this->url = $url;
 	
-		// アフィリエイトリンクかどうか
 		if(!preg_match('#^http://itunes.apple.com#', $url)) {
 			if(($url = $this->_squeeze($url)) === FALSE) {
 				die("incorrect URL : {$url}");
@@ -158,13 +143,10 @@ class iOSApp {
 			curl_setopt($ch, CURLOPT_URL, $this->itunesHttp);
 			curl_setopt($ch, CURLOPT_FAILONERROR, 1);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
-//			curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
 			curl_setopt($ch, CURLOPT_USERAGENT, $ua);
 			
 			$res = curl_exec($ch);
 			curl_close($ch);
-
-			
 		}
 		
 		return $res;
