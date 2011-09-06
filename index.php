@@ -6,11 +6,8 @@ define(APPSTORE_HOSTNAME, 'itunes.apple.com');
 $url = empty($_GET['url']) ? $argv[1] : $_GET['url'];
 
 
-$host = $_SERVER['SERVER_NAME'];
-
-
-$js = "javascript:var url = encodeURI(document.URL);location.href = 'http://".$host."/?url=' + url";
-
+$url = empty($_GET['url']) ? $argv[1] : $_GET['url'];
+$js = "javascript:var url = encodeURI(document.URL);location.href = 'http://".$_SERVER['SERVER_NAME'].$_SERVER['SCRIPT_NAME']."?url=' + url";
 
 
 //
